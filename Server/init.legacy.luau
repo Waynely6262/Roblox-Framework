@@ -4,15 +4,13 @@
 -- for loading the environment in command bar which allows for typechecking and autocomplete
 local script = (script or game.Selection:Get()[1]):: typeof(script)
 
-local Versioning = require(script._Root.VersionHistory):: {{string}}
 local PackageLoader = require(script._Root.PackageLoader)
 
-print(`Using Package Loader by Waynely V{#Versioning}.{#Versioning[#Versioning]}.{#Versioning[#Versioning][#Versioning[#Versioning]]}`)
+print(`Using Package Loader Framework by Waynely (https://github.com/Waynely6262/Roblox-Framework)`)
 
 local PackagesFolder = script:FindFirstChild("Packages"):: Folder
 if not PackagesFolder then
-	print("No package folder found")
-	return
+	return error("No package folder found.")
 end
 
 for _, Package in PackagesFolder:GetChildren() do

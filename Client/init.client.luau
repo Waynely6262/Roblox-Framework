@@ -6,11 +6,6 @@ if not game:IsLoaded() then
 end
 
 local LocalPlayer = game:GetService("Players").LocalPlayer
-do
-	assert(LocalPlayer:WaitForChild("leaderstats", 600), "leaderstats failed to load")
-	assert(LocalPlayer:WaitForChild("Data", 600), "Data failed to load")
-end
-
 
 local modules = {
 	PlayerModule = require(LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"))
@@ -22,7 +17,7 @@ local function insertModule(v)
 		return
 	end
 	local begin = os.clock()
-	--print("[Client] Loading " .. v.Name)
+
 	local s,r = pcall(function()
 		modules[v] = require(v)
 	end)
@@ -37,9 +32,9 @@ end
 
 
 local srcs = {
-	game.ReplicatedStorage.Client.Graphics;
-	game.ReplicatedStorage.Client.Backend;
 	game.ReplicatedStorage.Client;	
+	game.ReplicatedStorage.Client:FindFirstChild("Graphics");
+	game.ReplicatedStorage.Client:FindFirstChild("Backend");
 }
 
 local ScriptsLoading = {}
@@ -60,7 +55,6 @@ for _, src in srcs do
 					coroutine.resume(mainThread)
 				end
 			end)
-			--print(v.Name, "took " .. (os.clock() - t) .. " seconds to load")
 		end
 	end
 end
@@ -69,4 +63,4 @@ coroutine.yield()
 
 print("Client ready")
 
-return true
+return {}
