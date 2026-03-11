@@ -93,8 +93,10 @@ load_component = function(Component: Folder | ModuleScript, PackageName: string)
 	if IsStudio then
 		Component = Component:Clone()
 		Component:SetAttribute("_ver", timestamp)
+		Component:SetAttribute("_origin", PackageName)
 	end
 
+	-- allow nested packages
 	if Component.Name == "Packages" and Component.ClassName == "Folder" then
 		load_package(Component:: Folder)
 		return
@@ -103,7 +105,7 @@ load_component = function(Component: Folder | ModuleScript, PackageName: string)
 		return
 	end
 
-
+	-- Ignore PackageLink instances where the package is part of a Roblox Package
 	if Component.ClassName == "PackageLink" then return end
 
 	local Path = Component.Name:split("."):: {string}
