@@ -2,8 +2,9 @@ Convert the "Server" folder into a Legacy Script via Script Sync. This will load
 
 1. Enable Script Sync beta features
 2. Create a new script
-3. Right click the script
-4. Click "Script Sync"
-5. Click "Sync with new file"
-6. Name the file anything (e.g. "TEMP")
-7. Copy all contents from the "Server" folder into the "TEMP" folder
+3. Parent another script onto the first script
+4. Right click the script
+5. Click "Script Sync"
+6. Click "Sync with new file"
+7. Select a new empty folder, named anything (e.g. "TEMP")
+8. Replace all contents in the new folder with the contents of the "Server" folder
